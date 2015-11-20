@@ -26,7 +26,7 @@ class ReportIPService(win32serviceutil.ServiceFramework):
 	    f = open("C:/Users/hisen/dev/test/ip.txt",'w')
 	    print >> f, localIP
 	    f.close()
-	    os.system("cd C:/Users/hisen/dev/test && git commit -am'auto report ip %s'"%time.asctime())
+	    os.system("cd C:/Users/hisen/dev/test && git commit -am\"auto report ip %s\""%time.asctime())
 	    os.system("cd C:/Users/hisen/dev/test && git push origin master")
 	    time.sleep(60*10)
 
