@@ -20,14 +20,14 @@ class ReportIPService(win32serviceutil.ServiceFramework):
     def SvcDoRun(self):
         import time
 	import socket
-	import os
+	import os,sys
 	while self.isAlive:
 	    localIP = socket.gethostbyname(socket.gethostname())
-	    f = open("./ip.txt",'w')
+	    f = open("C:/Users/hisen/dev/test/ip.txt",'w')
 	    print >> f, localIP
 	    f.close()
-	    os.system("git commit -am'auto report ip %s'"%time.asctime())
-	    os.system("git push origin master")
+	    os.system("cd C:/Users/hisen/dev/test; git commit -am'auto report ip %s'"%time.asctime())
+	    os.system("cd C:/Users/hisen/dev/test;git push origin master")
 	    time.sleep(60*10)
 
     def SvcStop(self):
@@ -36,4 +36,4 @@ class ReportIPService(win32serviceutil.ServiceFramework):
 	self.isAlive = False
 
 if __name__ == '__main__':
-    win32serviceutil.HandleCommandLine(PythonService)
+    win32serviceutil.HandleCommandLine(ReportIPService)
