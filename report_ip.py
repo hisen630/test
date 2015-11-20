@@ -13,7 +13,7 @@ class ReportIPService(win32serviceutil.ServiceFramework):
     _svc_description_ = "Python report ip service"
 
     def __init__(self, args):
-        win32serviceutil.ServiceFramework.__init__(self, args)
+        #win32serviceutil.ServiceFramework.__init__(self, args)
 	self.hWaitStop = win32event.CreateEvent(None, 0, 0, None)
 	self.isAlive = True
 
@@ -26,8 +26,8 @@ class ReportIPService(win32serviceutil.ServiceFramework):
 	    f = open("C:/Users/hisen/dev/test/ip.txt",'w')
 	    print >> f, localIP
 	    f.close()
-	    os.system("cd C:/Users/hisen/dev/test; git commit -am'auto report ip %s'"%time.asctime())
-	    os.system("cd C:/Users/hisen/dev/test;git push origin master")
+	    os.system("cd C:/Users/hisen/dev/test && git commit -am'auto report ip %s'"%time.asctime())
+	    os.system("cd C:/Users/hisen/dev/test && git push origin master")
 	    time.sleep(60*10)
 
     def SvcStop(self):
@@ -36,4 +36,6 @@ class ReportIPService(win32serviceutil.ServiceFramework):
 	self.isAlive = False
 
 if __name__ == '__main__':
-    win32serviceutil.HandleCommandLine(ReportIPService)
+    #win32serviceutil.HandleCommandLine(ReportIPService)
+    a = ReportIPService("")
+    a.SvcDoRun()
