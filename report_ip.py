@@ -46,6 +46,7 @@ class ReportIPService(win32serviceutil.ServiceFramework):
         
         while self.isAlive:
             
+	    self.logger.error("run")
             localIP = socket.gethostbyname(socket.gethostname())
             f = open("C:/Users/hisen/dev/test/ip.txt",'w')
             print >> f, localIP
